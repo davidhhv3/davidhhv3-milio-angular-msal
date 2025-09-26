@@ -1,13 +1,21 @@
 <!doctype html>
 <html lang="en">
-<head>
-  <meta charset="utf-8">
-  <title>MsalAngularOriginal</title>
-  <base href="/">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="icon" type="image/x-icon" href="favicon.ico">
-</head>
-<body>
-  <app-root></app-root>
-</body>
+  <head>
+    <meta charset="utf-8">
+    <title>MSAL For JavaScript - Angular SPA</title>
+  </head>
+  <body>
+    <app-root></app-root>
+        <!-- Es una etiqueta personalizada creada por Angular.
+        Esa etiqueta representa el componente raíz (App).
+        Cuando arranca la aplicación, Angular sustituye ese <app-root> por el HTML del App -->
+
+    <app-redirect></app-redirect>
+      <!-- Es otra etiqueta personalizada, pero esta la trae MSAL Angular.
+      Representa el componente MsalRedirectComponent.
+      Su función es procesar la respuesta de autenticación 
+      cuando usas el flujo de inicio de sesión con redirect.
+      Angular la sustituye por el código necesario para terminar 
+      el login y obtener los tokens de Microsoft Entra ID. -->
+  </body>
 </html>

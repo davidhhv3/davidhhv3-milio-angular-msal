@@ -1,1 +1,50 @@
-/* You can add global styles to this file, and also import other style files */
+*{
+  margin: 0;
+}
+.container {
+  width: 100vw;   /* ancho total */
+  height: 100vh;  /* alto total */
+  display: flex;
+  justify-content:center;
+  align-items: center;
+  flex-direction: column;
+  gap: 90px;
+}
+button{
+  color: white;
+  border-radius: 20px;
+  border: none;
+  padding: 10px 40px;
+  font-size: 30px;
+  cursor: pointer;
+  background-color: blue;
+}
+
+button:hover{
+  background-color: rgb(1, 1, 75);
+}
+
+.profile-container{
+  width: 100%;
+  height: 100%;
+  padding: 30px;
+  border-radius: 55px;
+  box-shadow: 0 0 25px rgba(0, 0, 0, 0.25);
+  display: flex;
+  flex-direction: column; 
+}
+p{
+  font-size: 30px;
+}
+strong{
+  color: blue;
+  font-size: 30px;
+}
+
+
+
+
+
+
+
+
