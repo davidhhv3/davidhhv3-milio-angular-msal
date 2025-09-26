@@ -1,59 +1,57 @@
-# MsalAngularOriginal
+# Angular 20 + MSAL (Microsoft Entra ID)
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.1.4.
+Este proyecto es una aplicación **Angular 20** (con módulos, no standalone) integrada con **MSAL** para autenticación contra **Microsoft Entra ID (Azure Active Directory)**.  
+Permite iniciar sesión con cuentas Microsoft y consultar el perfil del usuario mediante **Microsoft Graph API**.
 
-## Development server
+---
 
-To start a local development server, run:
+## Requisitos previos
 
-```bash
-ng serve
-```
+- [Node.js](https://nodejs.org/) v18 o superior  
+- [Angular CLI](https://angular.dev/tools/cli) v20  
+- Una aplicación registrada en [Azure Portal](https://portal.azure.com) con:
+  - `clientId`
+  - `tenantId` (o authority)
+  - `redirectUri` configurado como:  
+    ```
+    http://localhost:4200
+    ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+---
 
-## Code scaffolding
+## Instalación
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
-```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
+Clonar el repositorio e instalar dependencias:
 
 ```bash
-ng build
+git clone https://github.com/davidhhv3/davidhhv3-milio-angular-msal.git
+npm install
 ```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+---
 
-## Running unit tests
+## Configuración de MSAL
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+En el archivo **`app.module.ts`**, modifica la configuración de MSAL con los valores de tu aplicación en Azure:
+
+```ts
+auth: {
+  clientId: "TU_CLIENT_ID",
+  authority: "https://login.microsoftonline.com/TU_TENANT_ID",
+  redirectUri: "http://localhost:4200"
+}
+```
+
+---
+
+## Ejecución
+
+Levantar el servidor de desarrollo y abrir el navegador automáticamente:
 
 ```bash
-ng test
+ng serve -o
 ```
 
-## Running end-to-end tests
+La aplicación quedará disponible en:
 
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+👉 [http://localhost:4200](http://localhost:4200)
