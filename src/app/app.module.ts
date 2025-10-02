@@ -26,13 +26,13 @@ const isIE = window.navigator.userAgent.indexOf('MSIE ') > -1 || window.navigato
 
 export function MSALInstanceFactory(): IPublicClientApplication {
   return new PublicClientApplication({
-    auth: {    
-      clientId: "59d67c5c-2883-40c7-bef0-8074efb890cb",  
-      authority: "https://login.microsoftonline.com/763c3961-1055-466d-b63c-b04b0a0b3187",   
-      redirectUri: "http://localhost:4200",      
+    auth: {       
+      clientId: "3c3b85a4-06c4-464e-839e-db68c1232e88",  
+      authority: "https://login.microsoftonline.com/e91f436a-ee20-45a8-97c2-98ec7d32fd04",   
+      redirectUri: "http://localhost:4200", 
     },
     cache: {
-      cacheLocation: BrowserCacheLocation.LocalStorage, //ndica dónde se guardan los tokens (localStorage en vez de sessionStorage).los tokens permanecen incluso al cerrar el navegador.
+      cacheLocation: BrowserCacheLocation.LocalStorage, //Indica dónde se guardan los tokens (localStorage en vez de sessionStorage).los tokens permanecen incluso al cerrar el navegador.
       storeAuthStateInCookie: isIE //Si el navegador es Internet Explorer (isIE = true), guarda también info en cookies para evitar errores de compatibilidad.
     }
   });
@@ -42,7 +42,7 @@ export function MSALInstanceFactory(): IPublicClientApplication {
 
 export function MSALInterceptorConfigFactory(): MsalInterceptorConfiguration {
   const protectedResourceMap = new Map<string, Array<string>>();
-  protectedResourceMap.set('https://graph.microsoft.com/v1.0/me', ['user.read']);
+  protectedResourceMap.set('https://graph.microsoft.com/v1.0/me', ['user.read','Directory.Read.All']);
 
   return {
     interactionType: InteractionType.Redirect,

@@ -5,6 +5,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 type ProfileType = {
+  roles?: string[]; 
   businessPhones?: string,
   displayName?: string,
   givenName?: string,
@@ -32,10 +33,30 @@ export class Profile implements OnInit {
 
   // When the page loads, perform an HTTP GET request from the Graph /me endpoint
   ngOnInit() {
-    this.http.get('https://graph.microsoft.com/v1.0/me')
-      .subscribe(profile => {
-        this.profile = profile;
-      });
-    
+  // this.http.get<ProfileType>('https://graph.microsoft.com/v1.0/me')
+  //   .subscribe(profile => {
+  //     this.profile = profile;
+  //   });
+
+  //grupos y roles
+  // this.http.get('https://graph.microsoft.com/v1.0/me/memberOf')
+  //   .subscribe(res => {
+  //     console.log(res);
+  //   });   
+  
+  this.http.get<ProfileType>('https://graph.microsoft.com/v1.0/me')
+    .subscribe(profile => {
+      this.profile = profile;
+
+      //traemos roles
+      this.http.get<{ value: any[] }>('https://graph.microsoft.com/v1.0/me/memberOf')
+        .subscribe(res => {
+          const roleNames = res.value
+            .filter(item => item['@odata.type'] === '#microsoft.graph.directoryRole')
+            .map(item => item.displayName);
+
+          this.profile.roles = roleNames;          
+        });
+    });
   }
 }

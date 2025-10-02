@@ -21,7 +21,7 @@ export class App implements OnInit, OnDestroy {
   private readonly _destroying$ = new Subject<void>();
 
   constructor(
-    @Inject(MSAL_GUARD_CONFIG) private msalGuardConfig: MsalGuardConfiguration,//Aquí se inyecta el objeto de configuración del MsalGuard (el que configuraste con MSALGuardConfigFactory).
+    //@Inject(MSAL_GUARD_CONFIG) private msalGuardConfig: MsalGuardConfiguration,//Aquí se inyecta el objeto de configuración del MsalGuard (el que configuraste con MSALGuardConfigFactory).
     private authService: MsalService,
     private msalBroadcastService: MsalBroadcastService
   ) { }
@@ -42,6 +42,12 @@ export class App implements OnInit, OnDestroy {
       this.msalBroadcastService.msalSubject$.pipe(filter((msg: EventMessage) => msg.eventType === EventType.ACQUIRE_TOKEN_SUCCESS)).subscribe(msg => {
       this.tokenExpiration=  (msg.payload as any).expiresOn;
       localStorage.setItem('tokenExpiration', this.tokenExpiration);
+
+      // const account = this.authService.instance.getActiveAccount();
+      // const userRoles = (account.idTokenClaims as any).roles || [];
+      // console.log('Roles del token:',userRoles);
+
+
       //Ese código escucha los eventos de MSAL y, cuando se adquiere correctamente un token (ACQUIRE_TOKEN_SUCCESS), 
       //guarda la fecha de expiración del token en la variable tokenExpiration y también en el localStorage para poder consultarla más tarde
     });
@@ -65,3 +71,4 @@ export class App implements OnInit, OnDestroy {
     this._destroying$.complete();
   }
 }
+//Notifica a los observables que deben completar su trabajo y desuscribirse
