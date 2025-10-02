@@ -48,9 +48,10 @@ export class Profile implements OnInit {
     .subscribe(profile => {
       this.profile = profile;
 
-      //traemos roles
+      //trae grupos y roles perteneciente al usuario
       this.http.get<{ value: any[] }>('https://graph.microsoft.com/v1.0/me/memberOf')
         .subscribe(res => {
+          console.log(res);
           const roleNames = res.value
             .filter(item => item['@odata.type'] === '#microsoft.graph.directoryRole')
             .map(item => item.displayName);
