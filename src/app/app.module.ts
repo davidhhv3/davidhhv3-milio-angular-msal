@@ -58,7 +58,7 @@ export function MSALGuardConfigFactory(): MsalGuardConfiguration {
   return { 
     interactionType: InteractionType.Redirect,
     authRequest: {
-      scopes: ['user.read']
+      scopes: ['user.read','RoleManagement.Read.All']
     }
   };
 }
